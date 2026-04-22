@@ -433,6 +433,29 @@
         renderTheme();
       });
     })();
+    async function loadAcademies() {
+  const target = document.getElementById('academyList');
+  if (!target) return;
+
+  try {
+    const res = await fetch('./data/academies.json');
+    const academies = await res.json();
+
+    target.innerHTML = academies.map(item => `
+      <div class="item">
+        <b>${item.name}</b>
+        <div>${item.category} · ${item.area} · ${item.target}</div>
+        <div>우리집 ${item.homeTime} / SSC ${item.sscTime}</div>
+        <div>${item.strength}</div>
+        <div>${item.memo}</div>
+      </div>
+    `).join('');
+  } catch (e) {
+    target.innerHTML = '<p>학원 데이터를 불러오지 못했어요.</p>';
+  }
+}
+
+loadAcademies();
   </script>
 </body>
 </html>
