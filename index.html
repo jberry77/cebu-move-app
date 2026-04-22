@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Cebu Family Move</title>
+  <meta name="theme-color" content="#01696f" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+  <style>
+    :root, [data-theme="light"] {
+      --font-body: 'Satoshi', 'Inter', sans-serif;
+      --font-display: 'Satoshi', 'Inter', sans-serif;
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem;
+      --color-bg:#f7f6f2; --color-surface:#f9f8f5; --color-surface-2:#fbfbf9; --color-surface-offset:#f3f0ec; --color-border:#d4d1ca;
+      --color-text:#28251d; --color-text-muted:#6d6a63; --color-text-faint:#9f9c95; --color-text-inverse:#f9f8f4;
+      --color-primary:#01696f; --color-primary-hover:#0c4e54; --color-primary-highlight:#cedcd8;
+      --color-success:#437a22; --color-success-highlight:#d4dfcc; --color-warning:#964219; --color-warning-highlight:#ddcfc6;
+      --radius-sm:0.375rem; --radius-md:0.75rem; --radius-lg:1rem; --radius-xl:1.25rem; --radius-full:9999px;
+      --shadow-sm:0 1px 2px rgba(20,20,20,0.05); --shadow-md:0 6px 20px rgba(20,20,20,0.08);
+      --transition:180ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    [data-theme="dark"] {
+      --color-bg:#171614; --color-surface:#1c1b19; --color-surface-2:#201f1d; --color-surface-offset:#22211f; --color-border:#393836;
+      --color-text:#e4e1da; --color-text-muted:#a8a39b; --color-text-faint:#716d67; --color-text-inverse:#171614;
+      --color-primary:#4f98a3; --color-primary-hover:#227f8b; --color-primary-highlight:#313b3b;
+      --color-success:#77b25a; --color-success-highlight:#2c3827; --color-warning:#d59262; --color-warning-highlight:#47372e;
+      --shadow-sm:0 1px 2px rgba(0,0,0,0.24); --shadow-md:0 10px 24px rgba(0,0,0,0.28);
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { -webkit-text-size-adjust:none; text-size-adjust:none; }
+    body {
+      min-height:100dvh; background:var(--color-bg); color:var(--color-text); font-family:var(--font-body, sans-serif);
+      line-height:1.5; font-size:var(--text-base);
+    }
+    button, input, select, textarea { font:inherit; color:inherit; }
+    button { cursor:pointer; border:none; background:none; }
+    .shell {
+      width:min(100%, 430px); margin:0 auto; min-height:100dvh; background:var(--color-bg);
+      position:relative; padding-bottom:92px;
+    }
+    .topbar {
+      position:sticky; top:0; z-index:20; background:color-mix(in srgb, var(--color-bg) 88%, transparent);
+      backdrop-filter: blur(14px); padding:env(safe-area-inset-top) var(--space-4) var(--space-3);
+      border-bottom:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+    }
+    .topbar-row { display:flex; align-items:center; justify-content:space-between; gap:var(--space-3); }
+    .brand { display:flex; align-items:center; gap:12px; }
+    .logo {
+      width:40px; height:40px; border-radius:14px; background:var(--color-primary); color:var(--color-text-inverse); display:grid; place-items:center;
+      box-shadow:var(--shadow-sm);
+    }
+    .logo svg { width:22px; height:22px; }
+    .brand-copy strong { display:block; font-size:var(--text-sm); }
+    .brand-copy span { color:var(--color-text-muted); font-size:var(--text-xs); }
+    .icon-btn {
+      min-width:44px; min-height:44px; border-radius:14px; background:var(--color-surface); border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+      display:grid; place-items:center;
+    }
+    .main { padding:var(--space-4); display:grid; gap:var(--space-4); }
+    .hero {
+      background:linear-gradient(180deg, color-mix(in srgb, var(--color-primary) 8%, var(--color-surface)) 0%, var(--color-surface) 100%);
+      border:1px solid color-mix(in srgb, var(--color-text) 8%, transparent); border-radius:var(--radius-xl);
+      padding:var(--space-5); box-shadow:var(--shadow-sm);
+    }
+    .eyebrow { font-size:var(--text-xs); color:var(--color-text-muted); margin-bottom:var(--space-2); }
+    h1 { font-size:var(--text-xl); line-height:1.1; margin-bottom:var(--space-3); }
+    .hero p { color:var(--color-text-muted); font-size:var(--text-sm); }
+    .quick-grid, .category-grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:var(--space-3); }
+    .quick-card, .category-card, .card, .form-card, .time-card {
+      background:var(--color-surface); border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+      border-radius:var(--radius-lg); box-shadow:var(--shadow-sm);
+    }
+    .quick-card, .category-card { padding:var(--space-4); min-height:108px; display:flex; flex-direction:column; justify-content:space-between; }
+    .quick-card strong, .category-card strong, .section-title { font-size:var(--text-sm); }
+    .quick-card span, .category-card span, .muted { color:var(--color-text-muted); font-size:var(--text-xs); }
+    .section-head { display:flex; align-items:end; justify-content:space-between; gap:var(--space-3); }
+    .section-head a, .link-btn { color:var(--color-primary); text-decoration:none; font-size:var(--text-xs); font-weight:700; }
+    .stack { display:grid; gap:var(--space-3); }
+    .card { padding:var(--space-4); }
+    .card-top { display:flex; justify-content:space-between; gap:var(--space-3); align-items:flex-start; }
+    .pill {
+      display:inline-flex; align-items:center; gap:6px; padding:8px 12px; border-radius:var(--radius-full); font-size:var(--text-xs); font-weight:700;
+      background:var(--color-primary-highlight); color:var(--color-primary);
+    }
+    .pill.success { background:var(--color-success-highlight); color:var(--color-success); }
+    .pill.warning { background:var(--color-warning-highlight); color:var(--color-warning); }
+    .meta-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:var(--space-3); }
+    .meta-chip {
+      background:var(--color-surface-offset); color:var(--color-text-muted); border-radius:var(--radius-full); padding:7px 10px; font-size:var(--text-xs);
+    }
+    .route-box {
+      margin-top:var(--space-4); padding:var(--space-4); border-radius:var(--radius-md); background:var(--color-surface-offset);
+      display:grid; gap:8px;
+    }
+    .route-line { display:flex; justify-content:space-between; gap:var(--space-3); font-size:var(--text-sm); }
+    .form-card { padding:var(--space-4); display:grid; gap:var(--space-4); }
+    .field { display:grid; gap:8px; }
+    .field label { font-size:var(--text-sm); font-weight:700; }
+    .field input, .field select, .field textarea {
+      width:100%; min-height:46px; border-radius:14px; border:1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
+      background:var(--color-surface-2); padding:0 14px;
+    }
+    .field textarea { min-height:104px; padding:14px; resize:vertical; }
+    .field input::placeholder, .field textarea::placeholder { color:var(--color-text-faint); }
+    .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
+      outline:2px solid var(--color-primary); outline-offset:2px;
+    }
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:var(--space-3); }
+    .primary-btn, .secondary-btn {
+      min-height:48px; border-radius:16px; padding:0 16px; font-weight:700;
+    }
+    .primary-btn { background:var(--color-primary); color:var(--color-text-inverse); }
+    .secondary-btn { background:var(--color-surface-offset); color:var(--color-text); border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent); }
+    .time-card { padding:var(--space-4); display:grid; gap:var(--space-3); }
+    .time-header { display:flex; justify-content:space-between; align-items:center; gap:var(--space-3); }
+    .time-grid { display:grid; grid-template-columns:1fr 1fr; gap:var(--space-3); }
+    .time-slot {
+      background:var(--color-surface-offset); border-radius:var(--radius-md); padding:var(--space-4); min-height:92px;
+      display:flex; flex-direction:column; justify-content:space-between;
+    }
+    .time-slot strong { font-size:var(--text-lg); line-height:1; }
+    .bottom-nav {
+      position:fixed; left:50%; bottom:0; transform:translateX(-50%); width:min(100%, 430px); background:color-mix(in srgb, var(--color-surface) 94%, transparent);
+      backdrop-filter: blur(16px); border-top:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+      padding:10px 14px calc(10px + env(safe-area-inset-bottom)); display:grid; grid-template-columns:repeat(5, 1fr); gap:8px;
+    }
+    .nav-item {
+      min-height:56px; border-radius:18px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; color:var(--color-text-muted); font-size:11px; font-weight:700;
+    }
+    .nav-item.active { background:var(--color-primary-highlight); color:var(--color-primary); }
+    .divider { height:1px; background:color-mix(in srgb, var(--color-text) 10%, transparent); }
+    .subtle { font-size:var(--text-xs); color:var(--color-text-faint); }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="topbar-row">
+        <div class="brand">
+          <div class="logo" aria-label="Cebu move logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M4 18c3-6 6-9 8-9s5 3 8 9" />
+              <path d="M7 14h10" />
+              <path d="M12 5v13" />
+            </svg>
+          </div>
+          <div class="brand-copy">
+            <strong>세부 가족이주 노트</strong>
+            <span>안드로이드 홈화면용 배포 패키지</span>
+          </div>
+        </div>
+        <button class="icon-btn" data-theme-toggle aria-label="테마 변경">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="hero">
+        <div class="eyebrow">생활 카테고리 확장</div>
+        <h1>학원 카테고리와 입력 폼을 붙인 2차 화면</h1>
+        <p>우리집 기준 이동시간을 나중에 실제 주소로 계산할 수 있도록, 현재는 차량·등하원·러시아워 기준 자리까지 함께 넣어둔 버전입니다.</p>
+      </section>
+
+      <section class="stack">
+        <div class="section-head">
+          <div>
+            <div class="section-title">빠른 카테고리</div>
+            <div class="muted">생활 탭 안에서 바로 들어갈 화면들</div>
+          </div>
+          <button class="link-btn" type="button">편집</button>
+        </div>
+        <div class="category-grid">
+          <article class="category-card">
+            <strong>학원</strong>
+            <span>영어, 수학, 예체능, 돌봄, 픽업 여부</span>
+          </article>
+          <article class="category-card">
+            <strong>식료품점</strong>
+            <span>가까운 장보기, 수입식품, 대량구매</span>
+          </article>
+          <article class="category-card">
+            <strong>병원</strong>
+            <span>응급실, 소아과, 치과, 야간 진료</span>
+          </article>
+          <article class="category-card">
+            <strong>쇼핑몰</strong>
+            <span>아이동반, 식당, 생활용품, 주차</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="stack">
+        <div class="section-head">
+          <div>
+            <div class="section-title">학원 카테고리 화면</div>
+            <div class="muted">우리집에서 시간 비교를 붙일 대표 카드</div>
+          </div>
+          <button class="link-btn" type="button">전체 보기</button>
+        </div>
+
+        <article class="card">
+          <div class="card-top">
+            <div>
+              <div class="pill">영어 · 초등</div>
+              <h2 style="font-size: var(--text-lg); margin-top: 10px;">Bright Academy Banilad</h2>
+              <p class="muted" style="margin-top: 6px;">Banilad · 픽업 문의 가능 · 방과후형</p>
+            </div>
+            <span class="pill success">저장候補</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-chip">월 수업료 자리</span>
+            <span class="meta-chip">학년대상 자리</span>
+            <span class="meta-chip">픽업 여부 자리</span>
+          </div>
+          <div class="route-box">
+            <div class="route-line"><span>우리집 기준 평시</span><strong>00분 자리</strong></div>
+            <div class="route-line"><span>우리집 기준 러시아워</span><strong>00분 자리</strong></div>
+            <div class="route-line"><span>SSC 기준 이동</span><strong>00분 자리</strong></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div>
+              <div class="pill">수학 · 중등</div>
+              <h2 style="font-size: var(--text-lg); margin-top: 10px;">North Hill Math Lab</h2>
+              <p class="muted" style="margin-top: 6px;">Talamban · 소규모 수업 · 주 3회</p>
+            </div>
+            <span class="pill warning">검토중</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-chip">차량 필요 가능성</span>
+            <span class="meta-chip">주차 자리</span>
+            <span class="meta-chip">상담 메모 자리</span>
+          </div>
+          <div class="route-box">
+            <div class="route-line"><span>우리집 기준 왕복</span><strong>00분 자리</strong></div>
+            <div class="route-line"><span>엄마 혼자 대기 적합</span><strong>메모 자리</strong></div>
+            <div class="route-line"><span>근처 장보기 동선</span><strong>연결 장소 자리</strong></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="stack">
+        <div class="section-head">
+          <div>
+            <div class="section-title">학원 입력 폼</div>
+            <div class="muted">실제 데이터 넣을 때 사용할 개인용 입력 화면</div>
+          </div>
+          <button class="link-btn" type="button">임시저장</button>
+        </div>
+
+        <form class="form-card">
+          <div class="field">
+            <label for="academy-name">학원 이름</label>
+            <input id="academy-name" type="text" placeholder="예: Bright Academy Banilad" />
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="academy-type">카테고리</label>
+              <select id="academy-type">
+                <option>영어</option>
+                <option>수학</option>
+                <option>예체능</option>
+                <option>돌봄</option>
+                <option>기타</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="academy-area">지역</label>
+              <select id="academy-area">
+                <option>Banilad</option>
+                <option>Lahug</option>
+                <option>Talamban</option>
+                <option>IT Park</option>
+                <option>Mandaue</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="academy-address">상세 주소</label>
+            <input id="academy-address" type="text" placeholder="건물명, 도로명, 랜드마크" />
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="pickup">픽업 여부</label>
+              <select id="pickup">
+                <option>문의 필요</option>
+                <option>가능</option>
+                <option>불가</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="target-age">대상 학년</label>
+              <input id="target-age" type="text" placeholder="예: 초1-초4" />
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="monthly-fee">월 수업료</label>
+              <input id="monthly-fee" type="text" placeholder="PHP 금액 자리" />
+            </div>
+            <div class="field">
+              <label for="class-days">수업 빈도</label>
+              <input id="class-days" type="text" placeholder="예: 주 3회" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="academy-note">메모</label>
+            <textarea id="academy-note" placeholder="상담 내용, 주차, 대기공간, 엄마 동선, 근처 마트 등을 적어두는 자리"></textarea>
+          </div>
+
+          <div class="form-grid">
+            <button class="secondary-btn" type="button">초기화</button>
+            <button class="primary-btn" type="button">학원 저장</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="stack">
+        <div class="section-head">
+          <div>
+            <div class="section-title">우리집 기준 시간 자리</div>
+            <div class="muted">나중에 집 주소를 넣으면 자동 계산될 자리</div>
+          </div>
+          <button class="link-btn" type="button">집 설정</button>
+        </div>
+
+        <article class="time-card">
+          <div class="time-header">
+            <div>
+              <strong style="display:block; font-size:var(--text-sm);">기준 집</strong>
+              <span class="muted">집 주소 미입력 · 현재는 빈 자리 상태</span>
+            </div>
+            <span class="pill">미설정</span>
+          </div>
+          <div class="time-grid">
+            <div class="time-slot">
+              <span class="muted">학원까지 평시</span>
+              <strong>--분</strong>
+              <span class="subtle">자동 계산 예정</span>
+            </div>
+            <div class="time-slot">
+              <span class="muted">학원까지 러시아워</span>
+              <strong>--분</strong>
+              <span class="subtle">자동 계산 예정</span>
+            </div>
+            <div class="time-slot">
+              <span class="muted">SSC → 학원</span>
+              <strong>--분</strong>
+              <span class="subtle">방과후 동선</span>
+            </div>
+            <div class="time-slot">
+              <span class="muted">집 → 마트 → 귀가</span>
+              <strong>--분</strong>
+              <span class="subtle">장보기 묶음 동선</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="stack">
+        <div class="section-head">
+          <div>
+            <div class="section-title">다음 버전에 붙일 기능</div>
+            <div class="muted">실사용 단계로 가기 전 필요한 것들</div>
+          </div>
+        </div>
+        <div class="quick-grid">
+          <article class="quick-card">
+            <strong>집 주소 1개 저장</strong>
+            <span>우리집 기준 계산 시작점</span>
+          </article>
+          <article class="quick-card">
+            <strong>지도 링크 연결</strong>
+            <span>구글맵/웨이즈 이동</span>
+          </article>
+          <article class="quick-card">
+            <strong>아이별 학원 분리</strong>
+            <span>첫째/둘째 일정 분리</span>
+          </article>
+          <article class="quick-card">
+            <strong>비용 합산</strong>
+            <span>월 수업료 총합 계산</span>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="하단 메뉴">
+      <button class="nav-item" type="button">홈</button>
+      <button class="nav-item" type="button">동선</button>
+      <button class="nav-item" type="button">숙소</button>
+      <button class="nav-item active" type="button">생활</button>
+      <button class="nav-item" type="button">저장함</button>
+    </nav>
+  </div>
+
+  <script>
+    (function(){
+      const root = document.documentElement;
+      const toggle = document.querySelector('[data-theme-toggle]');
+      let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const moon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+      const sun = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+      function renderTheme(){
+        root.setAttribute('data-theme', theme);
+        if(toggle){
+          toggle.innerHTML = theme === 'dark' ? sun : moon;
+          toggle.setAttribute('aria-label', theme === 'dark' ? '라이트 모드로 전환' : '다크 모드로 전환');
+        }
+      }
+      renderTheme();
+      toggle && toggle.addEventListener('click', function(){
+        theme = theme === 'dark' ? 'light' : 'dark';
+        renderTheme();
+      });
+    })();
+  </script>
+</body>
+</html>
