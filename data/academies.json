@@ -1,0 +1,122 @@
+[
+  {
+    "name": "CME Academy",
+    "category": "수학/영어",
+    "area": "Banilad",
+    "target": "초등",
+    "homeTime": "18분",
+    "sscTime": "12분",
+    "tuition": "문의",
+    "format": "소그룹/개별 보충",
+    "strength": "수학과 영어를 같이 보기 좋음",
+    "memo": "Cebu Math and English Study Center로 검색 가능. Banilad, Governor Cuenco Ave. 인근."
+  },
+  {
+    "name": "Cebu Math & English Study Center",
+    "category": "수학/영어",
+    "area": "Banilad",
+    "target": "초등/중등",
+    "homeTime": "20분",
+    "sscTime": "15분",
+    "tuition": "문의",
+    "format": "학습센터",
+    "strength": "Banilad 생활권에서 접근성 확인용",
+    "memo": "Northgate Centre, Governor Cuenco Ave. 주소 확인됨."
+  },
+  {
+    "name": "SK119 English Academy",
+    "category": "영어/ESL",
+    "area": "Cebu City",
+    "target": "초등/중등",
+    "homeTime": "16분",
+    "sscTime": "11분",
+    "tuition": "문의",
+    "format": "영어학원",
+    "strength": "한국인 학부모 검색 키워드로 잘 잡힘",
+    "memo": "Facebook 검색으로 확인 가능. 실제 주소와 운영시간 재확인 필요."
+  },
+  {
+    "name": "Cebu ESL",
+    "category": "영어/ESL",
+    "area": "Banilad",
+    "target": "초등/중등",
+    "homeTime": "17분",
+    "sscTime": "13분",
+    "tuition": "문의",
+    "format": "어학원",
+    "strength": "Banilad 쪽 위치 참고용",
+    "memo": "Maria Luisa Road, Banilad, Cebu City 주소 정보 확인됨."
+  },
+  {
+    "name": "CG Academy",
+    "category": "영어/ESL",
+    "area": "Cebu City",
+    "target": "초등/중등",
+    "homeTime": "22분",
+    "sscTime": "18분",
+    "tuition": "문의",
+    "format": "어학원",
+    "strength": "공식 사이트 정보가 비교적 많음",
+    "memo": "가족/주니어 프로그램 검색 후보. 위치와 코스는 다시 확인 필요."
+  },
+  {
+    "name": "Cebu International Academy",
+    "category": "영어/ESL",
+    "area": "Cebu City",
+    "target": "초등/중등",
+    "homeTime": "24분",
+    "sscTime": "19분",
+    "tuition": "문의",
+    "format": "어학원",
+    "strength": "대형 ESL 학교 후보로 비교하기 좋음",
+    "memo": "학교 소개, 시설, 지도 정보가 공식 사이트에 있음."
+  },
+  {
+    "name": "Cebu Blue Ocean Academy",
+    "category": "영어/ESL",
+    "area": "Mactan",
+    "target": "초등/중등",
+    "homeTime": "35분",
+    "sscTime": "30분",
+    "tuition": "문의",
+    "format": "어학원",
+    "strength": "Mactan 쪽 별도 후보로 보기 좋음",
+    "memo": "도심형보다 리조트형/집중형 비교용."
+  },
+  {
+    "name": "Genius English Academy",
+    "category": "영어/ESL",
+    "area": "Mactan",
+    "target": "초등/중등",
+    "homeTime": "38분",
+    "sscTime": "32분",
+    "tuition": "문의",
+    "format": "어학원",
+    "strength": "영어 집중형으로 검색 후보 확보 가능",
+    "memo": "EGI Hotel Bldg. 1, Looc, Maribago, Lapu-Lapu City."
+  },
+  {
+    "name": "GLC Global Language Cebu",
+    "category": "영어/ESL",
+    "area": "Cebu City",
+    "target": "초등/중등",
+    "homeTime": "21분",
+    "sscTime": "16분",
+    "tuition": "문의",
+    "format": "어학원",
+    "strength": "주니어/패밀리 코스 확인용",
+    "memo": "Kids & Parents courses, family package 정보가 있음."
+  },
+  {
+    "name": "IU English Academy",
+    "category": "영어/ESL",
+    "area": "Cebu City",
+    "target": "초등/중등",
+    "homeTime": "23분",
+    "sscTime": "18분",
+    "tuition": "문의",
+    "format": "어학원",
+    "strength": "학년별·가족형 수업 비교용",
+    "memo": "Kids, Academic, General, Contact 메뉴가 있는 공식 사이트 확인됨."
+  }
+]
